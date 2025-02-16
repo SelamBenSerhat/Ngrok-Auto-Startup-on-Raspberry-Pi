@@ -1,0 +1,36 @@
+Selam bir Raspberry Pi sunucun var ve dinamik bir ip adresine mi sahipsin.
+
+Ngrok ile tanış.
+
+Ngrok nedir?
+
+Ngrok kullandığınız bilgisayarın ön tanımlı bir portunu bir supdomain ile dış internete aktarmanızı sağlar.
+
+Web sitesi ile kayıt olun ve https için yeni bir edge oluşturun. Yeni bir hesap olduğunuz için size rasgele bir supdomain ile 1 adet sınırlı bir domain atayacaktır. 
+
+Oluşturduktan sonra Edges sayfasında oluşturduğunuz edge'i görebilirsiniz. Üzerine tıkladığınızda açılan pencerede Start a Tunnel buttonu göreceksiniz. Buttona Tıklayın. Açılan navbardaki ngrok tunnel -label edge=... ile başlayan kodu kopyalayın.
+
+Linux sisteminize geçiyoruz.
+
+"apt-get install ngork" komutu ile ngrok uygulamasını kurun. LxTerminale "ngrok" yazdığınızda sizden bir Authtoken isteyecek. Bu token'i ngrok web sitesinden alıp yapıştırın. Bu işlem tek seferliktir.
+
+yeni bir sh dosyası oluşturup ngrok sitesinden koyapadığımız kodu yapıştırın. Ve çalıştırın. Benim dosya adım "otomatik_ngrok.sh"
+
+İşlemleri doğru yapmanız halinde Ngrok tarafından size atanan subdomain adresinde Linux sunucunuzun 80 portunda çalışan Apache2 sayfasını göreceksiniz. 
+
+Ngrok kurduk ve çalıştırdık fakat bunu bizim yerimize otomatik yapan bir auto start prosedürü uygulayacağız.
+
+Sudo pcmanfm ile dosya gezginini yönetici olarak çalıştırın. "/etc/rc.local" klasörüne gidip en alt satıra;
+
+" sudo bash /home/aseka/Desktop/otomatik_ngrok.sh " satırını ekleyin. Dikkat etmelisiniz. Girdiğiniz dizinin doğruluğunu kontrol edin. Ben kurduğum yapı gereği Desktop üzerinde çalıştırıyorum.
+
+Sisteminizi yeniden başlattığınızda Otomatik olarak hiçbir pencere açılmadan Ngork uygulamasının arkaplanda otomatik başladığını kontrol etmek için Size atanmış edge'i tarayıcınızdan ziyaret edin.
+
+Ufak bir not: Ngrok size tcp ve https protokollerini tünelleme izni sağlar. Tcp kullanan minecraft gibi oyunlarda ağınızı paylaşmak için başlatma komutundaki https değerini tcp olarak değiştirip paylaşılan localhost portunu :80 değerinden 25565 değerine değiştirin.
+
+mysql için de aynı şekilde 3306 olarak değiştirebilirsiniz. 
+
+
+
+
+-SelamBenSerhat
